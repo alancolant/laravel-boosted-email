@@ -3,6 +3,7 @@
 namespace Alancolant\LaravelBoostedEmail;
 
 use Illuminate\Support\ServiceProvider;
+
 class LaravelBoostedEmailServiceProvider extends ServiceProvider
 {
     public function boot(): void
