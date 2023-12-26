@@ -17,7 +17,6 @@ class AdvancedMail extends Mailable
 
     protected ?TemplateContract $template = null;
 
-    #[\Override]
     protected function data(): array
     {
         return [];

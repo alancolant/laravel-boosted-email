@@ -1,6 +1,6 @@
 <?php
 
-namespace Alancolant\LaravelBoostedEmail\Design;
+namespace Alancolant\LaravelBoostedEmail\Design\Template;
 
 use Alancolant\LaravelBoostedEmail\Design\Contracts\TemplateContract;
 use Illuminate\Mail\Mailables\Content;

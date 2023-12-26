@@ -1,11 +1,11 @@
 <?php
 
-namespace Alancolant\LaravelBoostedEmail\Design;
+namespace Alancolant\LaravelBoostedEmail\Design\Layout;
 
 use Alancolant\LaravelBoostedEmail\Design\Contracts\LayoutContract;
 use Alancolant\LaravelBoostedEmail\Design\Contracts\TemplateContract;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Blade as LaravelBlade;
 use Illuminate\Support\Facades\View;
 
 class BladeLayout implements LayoutContract
@@ -29,7 +29,7 @@ class BladeLayout implements LayoutContract
             $data['__TEMPLATE_DATA'] = $template->toView()->getData();
         }
 
-        $htmlString = Blade::render($rawBlade, $data);
+        $htmlString = LaravelBlade::render($rawBlade, $data);
 
         return new Content(htmlString: $htmlString);
     }
