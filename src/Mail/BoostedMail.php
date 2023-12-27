@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 
-class AdvancedMail extends Mailable
+class BoostedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
