@@ -22,6 +22,10 @@ class BoostedMail extends Mailable
         return [];
     }
 
+    protected function prepare(): void
+    {
+    }
+
     public function setLayout(?LayoutContract $layout): self
     {
         $this->layout = $layout;
@@ -38,6 +42,8 @@ class BoostedMail extends Mailable
 
     public function content(): Content
     {
+        $this->prepare();
+
         if ($this->layout) {
             return $this->layout->toContent($this->template, $this->_getAllData());
         }
@@ -50,8 +56,8 @@ class BoostedMail extends Mailable
     private function _getAllData(): array
     {
         $publicProps = collect((new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC))
-            ->filter(fn (\ReflectionProperty $prop) => ! in_array($prop->getDeclaringClass()->getName(), [self::class, parent::class]))
-            ->mapWithKeys(fn (\ReflectionProperty $prop) => [$prop->getName() => $prop->getValue($this)]);
+            ->filter(fn(\ReflectionProperty $prop) => !in_array($prop->getDeclaringClass()->getName(), [self::class, parent::class]))
+            ->mapWithKeys(fn(\ReflectionProperty $prop) => [$prop->getName() => $prop->getValue($this)]);
 
         return array_merge($publicProps->toArray(), $this->data());
     }
