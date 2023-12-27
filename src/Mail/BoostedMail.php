@@ -56,13 +56,14 @@ class BoostedMail extends Mailable
     private function _getAllData(): array
     {
         $reflectedProps = collect((new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC))
-            ->filter(fn(\ReflectionProperty $prop) => !in_array($prop->getDeclaringClass()->getName(), [self::class, parent::class]));
+            ->filter(fn (\ReflectionProperty $prop) => ! in_array($prop->getDeclaringClass()->getName(), [self::class, parent::class]));
 
         /** Important do not use toArray on collection because transform model to array*/
         $publicProps = [];
         foreach ($reflectedProps as $reflectedProp) {
             $publicProps[$reflectedProp->getName()] = $reflectedProp->getValue($this);
         }
+
         return array_merge($publicProps, $this->data());
     }
 }
